@@ -29,3 +29,23 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {"form":form})
+
+def profile(request):
+    return render(request, 'user/profile.html', None)
+
+@csrf_exempt
+def changepass(request):
+    context = { "navinfo": config['DEFAULT']['CSRF'] }
+    if request.method == 'POST':
+        password1 = request.POST.get('newpass1')
+        password2 = request.POST.get('newpass2')
+        if (password1 == password2):
+            context = { "msg": 'Your new password is ' + password1,
+                        "navinfo": config['DEFAULT']['CSRF']
+            }
+        else:
+            context = { "msg": 'Passwords did not match.',
+                        "navinfo": config['DEFAULT']['CSRF']
+             }
+        return render(request, 'user/changepass.html', context)
+    return render(request, 'user/changepass.html', context)
