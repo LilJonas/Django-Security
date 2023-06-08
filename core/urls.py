@@ -13,8 +13,8 @@ urlpatterns = [
     path('users/changepass', views.changepass, name='changepass'),
     path('users/signup', views.signup, name='signup'),
     path('users/profile', views.profile, name='profile'),
-    # path('utils/testconn', views.testconn, name='testconn'),
-    # path('utils/filerunner', views.filerunner, name='filerunner'),
+    path('utils/testconn', views.testconn, name='testconn'),
+    path('utils/filerunner', views.filerunner, name='filerunner'),
     # path('utils/userlookup', views.userlookup, name='userlookup'),
     # path('utils/guestbook', views.guestbook, name='guestbook'),
 ]

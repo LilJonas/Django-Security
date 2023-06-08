@@ -49,3 +49,36 @@ def changepass(request):
              }
         return render(request, 'user/changepass.html', context)
     return render(request, 'user/changepass.html', context)
+
+def testconn(request):
+    context = { "navinfo": config['DEFAULT']['CommandExec'] }
+    if request.method == 'POST':
+        webAddr = request.POST.get('serveraddr')
+        procOut = subprocess.check_output('powershell.exe Test-Connection ' + webAddr, shell=True)
+        context = { 
+            "stdout": procOut.decode(),
+            "navinfo": config['DEFAULT']['CommandExec']
+        }
+        return render(request, 'utils/testconn.html', context)
+    return render(request, 'utils/testconn.html', context)
+
+def filerunner(request):
+    if request.method == 'GET':
+        file = request.GET.get('file')
+        if(file):
+            procOut = subprocess.check_output(['python', file], shell=True)
+            context = {
+                "stdout": procOut.decode(),
+                "file1": "fibonacci.py",
+                "file2": "version.py",
+                # "file3": "name.py",
+                "navinfo": config['DEFAULT']['FileInclusion']
+            }
+            return render(request, 'utils/filerunner.html', context)
+    context = {
+        "file1": "fibonacci.py",
+        "file2": "version.py",
+        # "file3": "name.py",
+        "navinfo": config['DEFAULT']['FileInclusion']
+    }
+    return render(request, 'utils/filerunner.html', context)
