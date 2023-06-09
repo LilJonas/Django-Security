@@ -10,6 +10,6 @@ class Core(models.Model):
         return self.title
 
 class Guestbook(models.Model):
-    first_name = models.CharField(max_length=100)
-    user_message = models.CharField(max_length = 300)
+    book_name = models.CharField(max_length = 300)
+    author_name = models.CharField(max_length=100)
     pub_date = models.DateField()

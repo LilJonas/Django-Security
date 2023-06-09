@@ -82,3 +82,29 @@ def filerunner(request):
         "navinfo": config['DEFAULT']['FileInclusion']
     }
     return render(request, 'utils/filerunner.html', context)
+
+def userlookup(request):
+    context = { "navinfo": config['DEFAULT']['SQLi'] }
+    if request.method == 'POST':
+        uname = request.POST.get('uname')
+        query = User.objects.raw('SELECT * from "auth_user" WHERE "auth_user"."username" = "' + uname + '"')
+        context = { "stdout": query,
+                    "navinfo": config['DEFAULT']['SQLi']
+        }
+        return render(request, 'utils/userlookup.html', context)
+    return render(request, 'utils/userlookup.html', context)
+
+def guestbook(request):
+    if request.method == 'POST':
+        ubook = request.POST.get('ubook')
+        uauth = request.POST.get('uauth')
+        gbook = Guestbook(book_name=ubook, author_name=uauth, pub_date=timezone.now())
+        gbook.save()
+    posts = Guestbook.objects.all()
+    if posts:
+        context= {"posts": posts,
+                  "navinfo": config['DEFAULT']['XSSs']
+        }
+    else:
+        context= { "navinfo": config['DEFAULT']['XSSs'] }
+    return render(request, 'utils/guestbook.html', context)
