@@ -18,6 +18,7 @@
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
       <table>
+        <h1 style="color:#154682; text-align:center;">Login</h1>
         <tr>
           <td>{{ form.username.label_tag }}</td>
           <td>{{ form.username }}</td>
@@ -27,10 +28,9 @@
           <td>{{ form.password }}</td>
         </tr>
       </table>
-      <input type="submit" class="loginButton" value="Login" />
+      <input type="submit" class="loginButton" value="login" />
       <input type="hidden" name="next" value="{{ next }}" />
     </form>
     
-    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
   </div>
 {% endblock %}

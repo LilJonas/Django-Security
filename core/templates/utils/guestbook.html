@@ -11,8 +11,8 @@
         <td><input type="text" name="ubook"></td>
       </tr>
       <tr>
-        <td><label for="uauth">Author: </label></td>
-        <td><input type="text" name="uauth"></td>
+        <td><label for="uauth">Description: </label></td>
+        <td><input type="text" name="desc"></td>
       </tr>  
     </table>
     <button type="submit" class="loginButton">Submit</button>
@@ -22,8 +22,8 @@
   <p style="font-size: 10px; padding-left: 3px;">
     {% for post in posts %}
       {% autoescape off %}
-      "{{ post.book_name }}"
-        - {{ post.author_name }}
+      "{{ post.name }}"
+        - {{ post.description }}
       {% endautoescape %}
     {% endfor %}
   </p>

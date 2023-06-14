@@ -3,35 +3,44 @@
 {% block content %}
 
   {% if form.errors %}
-    <p>Please try again.</p>
+    <p style="color:grey; text-align:center;">Please try again.</p>
   {% endif %}
   
   {% if next %}
     {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
+      <p style="color:grey; text-align:center;">Your account doesn't have access to this page. To proceed,
       please login with an account that has access.</p>
     {% else %}
-      <p>Please login to see this page.</p>
+      <p style="color:grey; text-align:center;">Please login to see this page.</p>
     {% endif %}
   {% endif %}
   <div class="cardForm">
   <form method="post">
     {% csrf_token %}
-    {% for field in form %}
-      <table>
-        {% if 'confirmation' in field.label_tag %}
-          <tr><td>Confirm :</td>
-        {% else %}
-          <tr><td>{{ field.label_tag }}</td>
-        {% endif %}
-          <td>{{ field }}</td></tr>
-        </tr></table>
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit" class="loginButton">Sign up</button>
+    <h1 style="color:#154682; text-align:center;">Sign up</h1>
+    <table>
+      {% for field in form %}
+
+        <tr><td>
+          {% if 'confirmation' in field.label_tag %}
+            Confirm :
+          {% else %}
+            {{ field.label_tag }}
+          {% endif %}
+        {{ field }}</td>
+        </tr>
+        <tr>
+          <td>
+          {% for error in field.errors %}
+          <p style="color: red; text-align:center;">{{ error }}</p>
+        {% endfor %}</td>
+        </tr>
+        
+      {% endfor %}
+
+    <tr><td><input type="submit" class="loginButton" value="Sign up" /></td></tr>
+
+    </table>
   </form>
   </div>
 {% endblock %}

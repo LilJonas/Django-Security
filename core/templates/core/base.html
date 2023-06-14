@@ -14,22 +14,23 @@
       <a href="/#">Home</a>
       {% if user.is_authenticated %}
       <a href="/users/profile">Profile</a>
-      <a href="/users/login">Brute Force</a>
       <a href="/utils/testconn">Command Execution</a>
-      <a href="/users/changepass">CSRF</a>
       <a href="/utils/filerunner">File Inclusion</a>
       <a href="/utils/userlookup">SQL Injection</a>
+      <a href="/users/login">Brute Force</a>
       <a href="/utils/guestbook">XSS Stored</a>
+      <!-- <a href="/utils/search_users">User Search</a> -->
       <a href="/users/logout">Logout</a>
       {% else %}
       <a href="/users/login">Login</a>
+      <!-- <a href="/users/register">Register</a> -->
       <a href="/users/signup">Signup</a>
-      <a href="/users/login">Brute Force</a>
-      <a href="/utils/testconn">Command Execution</a>
-      <a href="/users/changepass">CSRF</a>
+      <!-- <a href="/users/login">Brute Force</a> -->
+      <!-- <a href="/utils/testconn">Command Execution</a>
       <a href="/utils/filerunner">File Inclusion</a>
       <a href="/utils/userlookup">SQL Injection</a>
-      <a href="/utils/guestbook">XSS Stored</a>
+      <a href="/utils/guestbook">XSS Stored</a> -->
+      <!-- <a href="/utils/search_users">User Search</a> -->
       {% endif %}
   </div>
     <div class="sidenav">
