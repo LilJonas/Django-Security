@@ -4,7 +4,7 @@ from django.urls import include, path
 from . import views
 import configparser
 config = configparser.ConfigParser()
-config.read('core/static/core/navinfo.ini')
+config.read('core/static/core/navinfo.ini', encoding='utf-8')
 
 urlpatterns = [
     path('', views.index, name='index'),

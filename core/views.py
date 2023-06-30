@@ -13,7 +13,7 @@ import configparser
 from django.db import connection
 
 config = configparser.ConfigParser()
-config.read('core/static/core/navinfo.ini')
+config.read('core/static/core/navinfo.ini', encoding='utf-8')
 
 def index(request):
     context = { "navinfo": config['DEFAULT']['Index'] }
